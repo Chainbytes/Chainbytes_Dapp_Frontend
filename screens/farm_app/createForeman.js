@@ -35,37 +35,44 @@ export default function CreateForeman({ navigation }) {
 
   // Function to create the foreman
   // NB: Handle result in a better way. Check for errors
+
+  //THIS IS WHERE ERROR IS 
+  //https://docs.walletconnect.com/1.0/quick-start/dapps/web3-provider
   const createForeman = React.useCallback(
     async (_newForemanAddress) => {
       try {
-        const provider = new WalletConnectProvider({
+        const provider = new WalletConnectProvider({ 
           rpc: {
             5: config.providerUrl,
           },
+          network: 'binance',
           chainId: 5,
           connector: connector,
-          qrcode: false,
+          qrcode: false
+          
+          
         });
 
         await provider.enable();
-        const ethers_provider = new ethers.providers.Web3Provider(provider);
-        const signer = ethers_provider.getSigner();
-        let contract = new ethers.Contract(
-          config.contractAddress,
-          config.contractAbi,
-          signer
-        );
-        await contract
-          .createForeman(_newForemanAddress)
-          .then((result) => console.log(result));
+        // const ethers_provider = new ethers.providers.Web3Provider(provider);
+        // const signer = ethers_provider.getSigner();
+//         let contract = new ethers.Contract(
+//           config.contractAddress,
+//           config.contractAbi,
+//           signer
+//         );
+//         await contract
+//           .createForeman(_newForemanAddress)
+//           .then((result) => console.log(result));
       } catch (e) {
         console.log("Error: function call not good: ", e);
       }
+      
     },
     [connector]
   );
 
-  // Alert when a QR code is scanned and it is not an address
+//   // Alert when a QR code is scanned and it is not an address
   const notAddress = (address) => {
     alert(address + " is not an ethereum address", [
       {
@@ -94,7 +101,7 @@ export default function CreateForeman({ navigation }) {
             style={[styles.input, { borderColor: tc, color: tc, fontSize: 30 }]}
             allowFontScaling={true}
             onChangeText={onChangeText}
-            clearButtonMode={'while-editing'}
+            clearBruttonMode={'while-editing'}
             textAlign={'center'}
             placeholder="Address of new Foreman"
             value={newForemanAddress != null ? newForemanAddress : ""}
