@@ -46,9 +46,13 @@ export default function CreateForeman({ navigation }) {
             5: config.providerUrl,
           },
           chainId: 5,
-          connector: connector,
-          qrcode: false,
+          // connector: connector,
+          qrcode: true,
+        })
+        .on("error", (error) => {
+          console.error("Error creating WalletConnectProvider:", error);
         });
+        
 
         await provider.enable();
         const ethers_provider = new ethers.providers.Web3Provider(provider);
@@ -89,22 +93,22 @@ export default function CreateForeman({ navigation }) {
     }
 
     
-      React.useEffect(()=>{
-        const setupWalletConnectProvider = async ()=>{
-        provider = new WalletConnectProvider({
-          rpc: {
-            5: config.providerUrl,
-          },
-          chainId: 5,
-          // connector: connector,
-          qrcode: true,
-        })
-        .on("error", (error) => {
-          console.error("Error creating WalletConnectProvider:", error);
-        });
-        return 
-      }
-    }
+    //   React.useEffect(()=>{
+    //     const setupWalletConnectProvider = async ()=>{
+    //     provider = new WalletConnectProvider({
+    //       rpc: {
+    //         5: config.providerUrl,
+    //       },
+    //       chainId: 5,
+    //       // connector: connector,
+    //       qrcode: true,
+    //     })
+    //     .on("error", (error) => {
+    //       console.error("Error creating WalletConnectProvider:", error);
+    //     });
+    //     return 
+    //   }
+    // }
       )
   }    
     
