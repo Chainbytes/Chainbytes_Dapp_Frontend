@@ -38,16 +38,14 @@ export default function CreateForeman({ navigation }) {
   const createForeman = React.useCallback(
     async (_newForemanAddress) => {
       try {
-        const provider = new WalletConnectProvider({
-          rpc: {
-            5: config.providerUrl,
-          },
-          chainId: 5,
-          connector: connector,
-          qrcode: false,
-        });
+        let provider;
+        setupWalletConnectProvider();
+
 
         await provider.enable();
+        // await provider.enable().catch((error) => {
+        //   console.error("Error enabling WalletConnectProvider enable:", error);
+        // });
         const ethers_provider = new ethers.providers.Web3Provider(provider);
         const signer = ethers_provider.getSigner();
         let contract = new ethers.Contract(
@@ -83,7 +81,28 @@ export default function CreateForeman({ navigation }) {
     } else {
       notAddress(address);
     }
-  };
+
+    
+      React.useEffect(()=>{
+        const setupWalletConnectProvider = async ()=>{
+        provider = new WalletConnectProvider({
+          rpc: {
+            5: config.providerUrl,
+          },
+          chainId: 5,
+          // connector: connector,
+          qrcode: true,
+        })
+        .on("error", (error) => {
+          console.error("Error creating WalletConnectProvider:", error);
+        });
+        return 
+      }
+    }
+      )
+  }    
+    
+    
 
   return (
     <NavigationContainer independent={true}>
@@ -185,3 +204,4 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
 });
+
