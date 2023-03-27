@@ -41,29 +41,30 @@ export default function CreateForeman({ navigation }) {
   const createForeman = React.useCallback(
     async (_newForemanAddress) => {
       try {
-        const provider = new WalletConnectProvider({ 
+        const provider = new WalletConnectProvider({
           rpc: {
             5: config.providerUrl,
           },
-          network: 'binance',
           chainId: 5,
-          connector: connector,
-          qrcode: false
-          
-          
+          // connector: connector,
+          qrcode: true,
+        })
+        .on("error", (error) => {
+          console.error("Error creating WalletConnectProvider:", error);
         });
+        
 
         await provider.enable();
-        // const ethers_provider = new ethers.providers.Web3Provider(provider);
-        // const signer = ethers_provider.getSigner();
-//         let contract = new ethers.Contract(
-//           config.contractAddress,
-//           config.contractAbi,
-//           signer
-//         );
-//         await contract
-//           .createForeman(_newForemanAddress)
-//           .then((result) => console.log(result));
+        const ethers_provider = new ethers.providers.Web3Provider(provider);
+        const signer = ethers_provider.getSigner();
+        let contract = new ethers.Contract(
+          config.contractAddress,
+          config.contractAbi,
+          signer
+        );
+        await contract
+          .createForeman(_newForemanAddress)
+          .then((result) => console.log(result));
       } catch (e) {
         console.log("Error: function call not good: ", e);
       }
@@ -90,7 +91,28 @@ export default function CreateForeman({ navigation }) {
     } else {
       notAddress(address);
     }
-  };
+
+    
+    //   React.useEffect(()=>{
+    //     const setupWalletConnectProvider = async ()=>{
+    //     provider = new WalletConnectProvider({
+    //       rpc: {
+    //         5: config.providerUrl,
+    //       },
+    //       chainId: 5,
+    //       // connector: connector,
+    //       qrcode: true,
+    //     })
+    //     .on("error", (error) => {
+    //       console.error("Error creating WalletConnectProvider:", error);
+    //     });
+    //     return 
+    //   }
+    // }
+      )
+  }    
+    
+    
 
   return (
     <NavigationContainer independent={true}>
@@ -192,3 +214,4 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
 });
+
