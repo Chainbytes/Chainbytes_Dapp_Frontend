@@ -26,10 +26,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.jos224.chainbytescoffee"
     },
     "web": {
       "favicon": "./assets/images/icon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "e0f03f2a-0b61-4a27-84e3-a5934b63ceb6"
+      }
     }
   }
 }
