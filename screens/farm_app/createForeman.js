@@ -35,6 +35,9 @@ export default function CreateForeman({ navigation }) {
 
   // Function to create the foreman
   // NB: Handle result in a better way. Check for errors
+
+  //THIS IS WHERE ERROR IS 
+  //https://docs.walletconnect.com/1.0/quick-start/dapps/web3-provider
   const createForeman = React.useCallback(
     async (_newForemanAddress) => {
       try {
@@ -43,9 +46,13 @@ export default function CreateForeman({ navigation }) {
             5: config.providerUrl,
           },
           chainId: 5,
-          connector: connector,
-          qrcode: false,
+          // connector: connector,
+          qrcode: true,
+        })
+        .on("error", (error) => {
+          console.error("Error creating WalletConnectProvider:", error);
         });
+        
 
         await provider.enable();
         const ethers_provider = new ethers.providers.Web3Provider(provider);
@@ -61,11 +68,12 @@ export default function CreateForeman({ navigation }) {
       } catch (e) {
         console.log("Error: function call not good: ", e);
       }
+      
     },
     [connector]
   );
 
-  // Alert when a QR code is scanned and it is not an address
+//   // Alert when a QR code is scanned and it is not an address
   const notAddress = (address) => {
     alert(address + " is not an ethereum address", [
       {
@@ -83,7 +91,28 @@ export default function CreateForeman({ navigation }) {
     } else {
       notAddress(address);
     }
-  };
+
+    
+    //   React.useEffect(()=>{
+    //     const setupWalletConnectProvider = async ()=>{
+    //     provider = new WalletConnectProvider({
+    //       rpc: {
+    //         5: config.providerUrl,
+    //       },
+    //       chainId: 5,
+    //       // connector: connector,
+    //       qrcode: true,
+    //     })
+    //     .on("error", (error) => {
+    //       console.error("Error creating WalletConnectProvider:", error);
+    //     });
+    //     return 
+    //   }
+    // }
+      )
+  }    
+    
+    
 
   return (
     <NavigationContainer independent={true}>
@@ -94,7 +123,7 @@ export default function CreateForeman({ navigation }) {
             style={[styles.input, { borderColor: tc, color: tc, fontSize: 30 }]}
             allowFontScaling={true}
             onChangeText={onChangeText}
-            clearButtonMode={'while-editing'}
+            clearBruttonMode={'while-editing'}
             textAlign={'center'}
             placeholder="Address of new Foreman"
             value={newForemanAddress != null ? newForemanAddress : ""}
@@ -185,3 +214,4 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
 });
+
