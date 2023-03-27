@@ -51,6 +51,8 @@ These have been set, but can be changed
     * To check if you are logged in, you can do this by entering in the command line `expo whoami`.
 2. `expo publish` - this command will package the application and then publish it onto your Expo Developer account.
 3. Access the application by looking at published applications under profile. There should be a <b>shareable link</b> to use this application, as well as a scannable <b>QR code</b>. Now, the application can be accessed by anyone, anywhere, as long as they have the Expo Go application on their device, and are authorized to access this application. Authorization can be changed on the Expo Go website [here](https://expo.dev).
+    * [Manifest](https://exp.host/@jos224/chainbytes-coffee)
+    * [Project page](https://expo.dev/@jos224/chainbytes-coffee?serviceType=classic&distribution=expo-go) 
 
 <i>NOTE</i>: To learn how to publish channels using Expo, you can do so [here](https://docs.expo.dev/archive/classic-updates/publishing/). More advanced deployment instructions can also be found at this [link](https://docs.expo.dev/archive/classic-updates/advanced-release-channels/).
 
