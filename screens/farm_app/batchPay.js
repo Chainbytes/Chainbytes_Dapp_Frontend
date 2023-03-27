@@ -20,6 +20,7 @@ export default function BatchPay() {
   const [workers, setWorkers] = useState([]);
   const [balance, setBalance] = useState(0);
   const tc = textColor();
+  var numWorkersUnpaid = 1;
 
   function textChange(input) {
     if (input.trim() === '') {
@@ -38,10 +39,13 @@ export default function BatchPay() {
     for (let worker of workers) {
       if (worker.daysUnpaid != 0) {
         _balance += worker.daysUnpaid * rate;
+        numWorkersUnpaid += 1; //added 
       }
     }
     setBalance(_balance);
   }, [rate, workers]);
+
+
 
   // Function to get current rate of ETH for USD
   async function getPrice(setExchangeRate) {
@@ -306,6 +310,7 @@ export default function BatchPay() {
     </>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {

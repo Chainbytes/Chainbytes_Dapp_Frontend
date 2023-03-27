@@ -7,6 +7,33 @@ import { useWalletConnect } from "@walletconnect/react-native-dapp";
 import Spinner from "react-native-loading-spinner-overlay";
 import { Text, View, backgroundColor } from '../../components/Themed';
 import { homeStyles } from "../../style";
+// import { useQuery } from "@apollo/client";
+// import * as query from "../../query";
+import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
+
+
+//gets the URI of the subgraph for the workers
+const client = new ApolloClient({
+  uri: "https://api.thegraph.com/subgraphs/name/jossduff/coffee-subgraph",
+  cache: new InMemoryCache(),
+});
+//this in theory will query the graph for the numebr of unpaid workers 
+const getNumUnpaid = async () => {
+  //NEED to know if this is the correct query on the backend to get this 
+  query = gql `
+    query {
+      workers(where: { daysUnpaid_gt: 0 }) { 
+        id
+      }
+    }
+  `;
+
+  const { data } = await client.query({ query });
+  return data.workers.length;
+};
+
+
+
 
 
 const provider = new ethers.providers.JsonRpcProvider(config.providerUrl);
@@ -36,9 +63,12 @@ export default function Home({ route }) {
   const [balance, setBalance] = useState("");
   const bg = backgroundColor();
   const [chainId, setChainId] = useState()
+  const [numUnpaid, setNumUnpaid] = useState(null);  //added to get the num of unpaid workers
+
 
   // Queries the provider for: chainID, current user's balance, and current user's role according to the contract
   useEffect(() => {
+    
     async function getBalance() {
       await provider.getNetwork().then((result) => {
         setChainId(result.name)
@@ -50,6 +80,16 @@ export default function Home({ route }) {
     }
     getBalance();
 
+    // added to get the updated number of unpaid workers
+   
+    async function updateNumUnpaid() {
+      const numUnpaid = await getNumUnpaid();
+      setNumUnpaid(numUnpaid);
+    }
+    updateNumUnpaid();
+
+    // ^^^^^^^
+
     async function getData() {
       await contract.isFarm(my_address).then((result) => {
         setFarm(result);
@@ -58,6 +98,8 @@ export default function Home({ route }) {
     }
     getData();
   });
+
+
 
   if (loading || loading2) {
     return (
@@ -96,9 +138,16 @@ export default function Home({ route }) {
           {/**This will display the amount of active workers under the farm */}
           <View style={homeStyles.subContainer}>
             {/* TODO: make a query to get total number of workers with daysUnpaid > 0, and display it here */}
-            <Text style={homeStyles.subText}>
-              You have no/# unpaid Workers
-            </Text>
+            {numUnpaid !== null ? (
+              <Text style={homeStyles.subText}>
+              You have { numUnpaid } unpaid workers.
+              </Text>
+            ) : (
+              <Text style={homeStyles.subText}>
+              Loading unpaid workers ...
+              </Text>
+            )}
+            
           </View>
         </SafeAreaView>
       </NavigationContainer>
