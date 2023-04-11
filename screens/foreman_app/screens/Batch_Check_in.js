@@ -65,6 +65,7 @@ export default function Checked_in({ route }) {
           5: config.providerUrl,
         },
         chainId: 5,
+        NetworkCheckTimeout: 10000,
         connector: connector,
         qrcode: false,
       });

@@ -39,11 +39,12 @@ export default function BatchPay() {
     for (let worker of workers) {
       if (worker.daysUnpaid != 0) {
         _balance += worker.daysUnpaid * rate;
-        numWorkersUnpaid += 1; //added 
+        numWorkersUnpaid++;
+        
       }
     }
     setBalance(_balance);
-  }, [rate, workers]);
+  }, [workers, rate]);
 
 
 
