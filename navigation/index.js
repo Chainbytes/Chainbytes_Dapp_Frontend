@@ -4,42 +4,29 @@
  *
  */
 import { FontAwesome } from "@expo/vector-icons";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import {
-  NavigationContainer,
-  DefaultTheme,
-  DarkTheme,
+  NavigationContainer
 } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import {
-  ConnectorEvents,
-  useWalletConnect,
+  useWalletConnect
 } from "@walletconnect/react-native-dapp";
 import * as React from "react";
 import {
-  ColorSchemeName,
   Pressable,
   Text,
   View,
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
-import WalletConnectProvider from "@walletconnect/web3-provider";
-import { ethers } from "ethers";
 
-import Colors from "../constants/Colors";
-import useColorScheme from "../hooks/useColorScheme";
+
+
 import ModalScreen from "../screens/ModalScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
 import roleNavigation from "../screens/roleNavigation";
-import {
-  RootStackParamList,
-  RootTabParamList,
-  RootTabScreenProps,
-} from "../types";
 import LinkingConfiguration from "./LinkingConfiguration";
-import * as config from "../screens/ChainBytesConfig";
-import qrModal from "../screens/farm_app/qrModal";
+
 
 global.myAddress = "";
 
@@ -47,7 +34,7 @@ export default function Navigation({ colorScheme } = ColorSchemeName) {
   return (
     <NavigationContainer
       linking={LinkingConfiguration}
-      // theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+    // theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
     >
       <RootNavigator />
     </NavigationContainer>
