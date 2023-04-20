@@ -6,7 +6,7 @@ import { FontAwesome } from "@expo/vector-icons";
 import Home from "../screens/Home";
 import Scanner from "../screens/Scanner";
 import BatchCheckIn from "../screens/Batch_Check_in"
-import { useWalletConnect } from "@walletconnect/react-native-dapp";
+import { useWalletConnect } from "@walletconnect/react-native-dapp"; //change from @walletconnect/react-native-dapp to => @walletconnect/ethereum-provider
 import { textColor, backgroundColor, View } from '../../../components/Themed'
 import { tabBarStyles } from "../../../style";
 

@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { ethers } from "ethers";
 import { SafeAreaView } from "react-native-safe-area-context";
 import * as config from "../ChainBytesConfig.js";
-import { useWalletConnect } from "@walletconnect/react-native-dapp";
+import { useWalletConnect } from "@walletconnect/react-native-dapp"; //change from @walletconnect/react-native-dapp to => @walletconnect/ethereum-provider
 import { Text, View, backgroundColor } from "../../components/Themed";
 import Spinner from "react-native-loading-spinner-overlay";
 import { homeStyles } from "../../style.js";

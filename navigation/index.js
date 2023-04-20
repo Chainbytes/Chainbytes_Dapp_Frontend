@@ -10,7 +10,7 @@ import {
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import {
   useWalletConnect
-} from "@walletconnect/react-native-dapp";
+} from "@walletconnect/react-native-dapp"; //change from @walletconnect/react-native-dapp to => @walletconnect/ethereum-provider
 import * as React from "react";
 import {
   Pressable,

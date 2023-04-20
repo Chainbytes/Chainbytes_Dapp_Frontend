@@ -1,5 +1,5 @@
-import { useWalletConnect } from "@walletconnect/react-native-dapp";
-import WalletConnectProvider from "@walletconnect/web3-provider";
+import { useWalletConnect } from "@walletconnect/react-native-dapp"; //change from @walletconnect/react-native-dapp to => @walletconnect/ethereum-provider
+import WalletConnectProvider from "@walletconnect/web3-provider"; //change from @walletconnect/web3-provider to => @walletconnect/ethereum-provider
 import { StyleSheet, FlatList, TouchableOpacity, Keyboard, TouchableWithoutFeedback } from "react-native";
 import { View, Text, TextInput, textColor } from "../../components/Themed";
 import React, { useEffect, useState, useCallback } from "react";

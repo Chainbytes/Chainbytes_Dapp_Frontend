@@ -5,7 +5,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import QRWallet from "./qrWallet";
 import WorkerHomeScreen from "./workerHome";
 import WorkCalendar from "./workerCalendar";
-import { useWalletConnect } from "@walletconnect/react-native-dapp";
+import { useWalletConnect } from "@walletconnect/react-native-dapp"; //change from @walletconnect/react-native-dapp to => @walletconnect/ethereum-provider
 import { textColor, backgroundColor, View } from "../../components/Themed";
 import { tabBarStyles } from "../../style";
 

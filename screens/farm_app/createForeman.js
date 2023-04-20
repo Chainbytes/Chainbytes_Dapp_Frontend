@@ -7,8 +7,8 @@ import {
 } from "react-native";
 import React from "react";
 import { ethers } from "ethers";
-import WalletConnectProvider from "@walletconnect/web3-provider";
-import { useWalletConnect } from "@walletconnect/react-native-dapp";
+import WalletConnectProvider from "@walletconnect/web3-provider"; //change from @walletconnect/web3-provider to => @walletconnect/ethereum-provider
+import { useWalletConnect } from "@walletconnect/react-native-dapp"; //change from @walletconnect/react-native-dapp to => @walletconnect/ethereum-provider
 import ethereum_address from "ethereum-address";
 import * as config from "../ChainBytesConfig.js";
 import Ionicons from "react-native-vector-icons/Ionicons";

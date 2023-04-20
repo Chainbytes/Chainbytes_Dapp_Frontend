@@ -9,7 +9,7 @@ const { default: App } = require("./App");
 const {
   default: AsyncStorage,
 } = require("@react-native-async-storage/async-storage");
-const { withWalletConnect } = require("@walletconnect/react-native-dapp");
+const { withWalletConnect } = require("@walletconnect/react-native-dapp"); //change from @walletconnect/react-native-dapp to => @walletconnect/ethereum-provider
 
 // registerRootComponent calls AppRegistry.registerComponent('main', () => App);
 // It also ensures that whether you load the app in the Expo client or in a native build,

@@ -12,7 +12,7 @@ import {
 } from "../../components/Themed";
 import * as query from "../../query";
 import { useQuery } from "@apollo/client";
-import { useWalletConnect } from "@walletconnect/react-native-dapp";
+import { useWalletConnect } from "@walletconnect/react-native-dapp"; //change from @walletconnect/react-native-dapp to => @walletconnect/ethereum-provider
 
 
 // Contract declaration

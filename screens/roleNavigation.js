@@ -21,7 +21,7 @@ import { Text, View } from "../components/Themed";
 import Spinner from "react-native-loading-spinner-overlay";
 import qrModal from "./farm_app/qrModal";
 
-import { useWalletConnect } from "@walletconnect/react-native-dapp";
+import { useWalletConnect } from "@walletconnect/react-native-dapp"; //change from @walletconnect/react-native-dapp to => @walletconnect/ethereum-provider
 // import {
 //   useWalletConnect,
 //   withWalletConnect,

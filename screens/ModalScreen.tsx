@@ -1,4 +1,4 @@
-import { useWalletConnect } from '@walletconnect/react-native-dapp';
+import { useWalletConnect } from '@walletconnect/react-native-dapp'; //change from @walletconnect/react-native-dapp to => @walletconnect/ethereum-provider
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Platform, StyleSheet, TouchableOpacity } from 'react-native';
