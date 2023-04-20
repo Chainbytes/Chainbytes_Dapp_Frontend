@@ -26,7 +26,7 @@ const setCreated = (num) => {
 const checkInFailed = () => {
   Alert.alert(
     "ERROR CREATING FOREMAN",
-    "The Batch Check-In operation has Failed",
+    "The Create foreman operation has Failed",
     [
       {
         text: "Dismiss",
@@ -86,6 +86,7 @@ export default function CreateForeman({ navigation }) {
         connector: connector,
         qrcode: false
       });
+
       await provider.enable();
       const ethers_provider = new ethers.providers.Web3Provider(provider);
       const signer = ethers_provider.getSigner();
@@ -95,7 +96,7 @@ export default function CreateForeman({ navigation }) {
         signer
       );
       
-      //ADDING THIS CODE TO FIX ERROR
+      
       // if (typeof web3 !== 'undefined' && typeof contractAddress !== 'undefined' && typeof abi !== 'undefined') {
       //   web3 = new Web3(web3.currentProvider);
       //   contract = new web3.eth.Contract(abi, contractAddress);
@@ -105,17 +106,17 @@ export default function CreateForeman({ navigation }) {
       
       try {
         setLoading(true);
-        await contract.setCreated(foreman2, date).then((result) =>{
-          console.log("Foreman created at " + date);
-          setCreated(foreman2.length);
-          console.log("Num Foreman created: " + created);
-          setLoading(false);
+        await contract.createForeman(foreman2).then((result) =>{
+        console.log("Foreman created at " + date);
+        setCreated(foreman2.length);
+        console.log("Num Foreman created: " + created);
+        setLoading(false);
         });
       } catch (e) {
-        console.error(e);
-        checkInFailed();
-        setLoading(false);
-      }
+          console.error(e);
+          checkInFailed();
+          setLoading(false);
+       }
 
 
       },
