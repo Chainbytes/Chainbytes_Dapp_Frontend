@@ -4,9 +4,9 @@
     "slug": "foreman_app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "/Chainbytes_Dapp_Frontend/assets/images/icon.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "/Chainbytes_Dapp_Frontend/assets/images/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -21,12 +21,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "/Chainbytes_Dapp_Frontend/assets/images/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "/Chainbytes_Dapp_Frontend/assets/images/favicon.png"
     }
   }
 }
