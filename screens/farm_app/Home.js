@@ -14,7 +14,7 @@ import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 
 //gets the URI of the subgraph for the workers
 const client = new ApolloClient({
-  uri: "https://api.thegraph.com/subgraphs/name/jossduff/coffee-subgraph",
+  uri: "https://api.studio.thegraph.com/query/44596/coffee-subgraph/v0.0.3",
   cache: new InMemoryCache(),
 });
 //this in theory will query the graph for the numebr of unpaid workers 
@@ -42,6 +42,7 @@ let contract = new ethers.Contract(
   config.contractAbi,
   provider
 );
+
 
 // This function will turn an address into an abbreviated version
 const shortenAddress = (address) => {

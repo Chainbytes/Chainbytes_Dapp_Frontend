@@ -23,10 +23,10 @@ const setCreated = (num) => {
 
 
 
-const checkInFailed = () => {
+const createForemanFailed = () => {
   Alert.alert(
     "ERROR CREATING FOREMAN",
-    "The Batch Check-In operation has Failed",
+    "The create foreman operation has Failed",
     [
       {
         text: "Dismiss",
@@ -73,9 +73,13 @@ export default function CreateForeman({ navigation }) {
       var date = moment().utcOffset("-04:00").format("YYYY-MM-DD hh:mm:ss a");
       var foreman2 = [];
       for(const foreman of _newForemanAddress){
-        foreman2.push(foreman.text);
+        foreman2.push(foreman);
+        console.log("foreman: " + foreman)
+        console.log("foreman text: " + foreman.text)
       }
-      console.log(foreman2)
+      console.log("foreman2: " + foreman2)
+      var foreman3 = foreman2.join("");
+      console.log("foreman3: " + foreman3)
 
       const provider = new WalletConnectProvider({
         rpc: {
@@ -105,15 +109,15 @@ export default function CreateForeman({ navigation }) {
       
       try {
         setLoading(true);
-        await contract.setCreated(foreman2, date).then((result) =>{
+        await contract.createForeman(foreman3).then((result) =>{
           console.log("Foreman created at " + date);
-          setCreated(foreman2.length);
+          createForeman(foreman3);
           console.log("Num Foreman created: " + created);
           setLoading(false);
         });
       } catch (e) {
         console.error(e);
-        checkInFailed();
+        createForemanFailed();
         setLoading(false);
       }
 
