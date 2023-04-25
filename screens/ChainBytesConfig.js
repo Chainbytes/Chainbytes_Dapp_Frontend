@@ -184,4 +184,4 @@ export const contractAbi = [
 export const contractAddress = "0x9E2eF6C92dC1D724c1E4dFdB22AcAcd3B80cC26B";
 
 export const providerUrl =
-  "https://eth-goerli.g.alchemy.com/v2/eKlYL5JTF_h_t0YfnlsRfqyGu4avTfXM";
+  "https://eth-goerli.g.alchemy.com/v2/FP_JQ1iv8Ub0u3tcHucRdTSqtQ9uHI7K";

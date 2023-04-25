@@ -5,7 +5,7 @@ import ethereum_address from "ethereum-address";
 
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { FontAwesome } from "@expo/vector-icons";
-import { randomBytes } from "ethers/lib/utils";
+import { randomBytes } from "ethers";
 import { View, Text, textColor } from "../../../components/Themed"
 
 const shortenAddress = (address) => {

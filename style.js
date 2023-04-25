@@ -73,6 +73,7 @@ export const tabBarStyles = StyleSheet.create({
     shadowOffset: { width: 0, height: 0, },
     shadowOpacity: 0.6,
     shadowRadius: 5,
+    
   },
   tabBarItemStyle: {
     backgroundColor: '#00ff00',

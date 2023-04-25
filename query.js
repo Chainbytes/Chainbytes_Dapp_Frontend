@@ -4,7 +4,7 @@ import { AppRegistry } from "react-native";
 
 // Initialize Apollo Client
 export const client = new ApolloClient({
-  uri: "https://api.thegraph.com/subgraphs/name/jossduff/coffee-subgraph",
+  uri: "https://api.studio.thegraph.com/query/44596/coffee-subgraph/v0.0.3",
   cache: new InMemoryCache(),
 });
 
