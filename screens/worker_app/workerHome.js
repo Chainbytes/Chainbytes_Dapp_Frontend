@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { ethers } from "ethers";
 import { SafeAreaView } from "react-native-safe-area-context";
 import * as config from "../ChainBytesConfig.js";
-import { useWalletConnect } from "@walletconnect/react-native-dapp"; //change from @walletconnect/react-native-dapp to => @walletconnect/ethereum-provider
+// import { useWalletConnect } from "@walletconnect/react-native-dapp"; //change from @walletconnect/react-native-dapp to => @walletconnect/ethereum-provider
 import { Text, View, backgroundColor } from "../../components/Themed";
 import Spinner from "react-native-loading-spinner-overlay";
 import { homeStyles } from "../../style.js";
@@ -37,7 +37,15 @@ function formatLastCheckin(lastCheckedIn, setCheckedIn) {
 }
 
 export default function WorkerHomeScreen() {
-  const connector = useWalletConnect();
+  // const connector = useWalletConnect();
+  //switch to wagmiConnection to walletconnect
+  const connector = connect({
+    connector: WalletConnectConnector({
+      options: {
+        projectId: config.projectId,
+      }
+    }),
+  });
   const my_address = connector.accounts[0];
   const [lastCheckedIn, setCheckedIn] = React.useState("N/A");
   const [loading, setLoading] = useState(true);

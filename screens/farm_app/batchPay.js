@@ -1,5 +1,9 @@
-import { useWalletConnect } from "@walletconnect/react-native-dapp"; //change from @walletconnect/react-native-dapp to => @walletconnect/ethereum-provider
-import WalletConnectProvider from "@walletconnect/web3-provider"; //change from @walletconnect/web3-provider to => @walletconnect/ethereum-provider
+//import { useWalletConnect } from "@walletconnect/react-native-dapp"; //change from @walletconnect/react-native-dapp to => @walletconnect/ethereum-provider
+// import WalletConnectProvider from "@walletconnect/web3-provider"; //change from @walletconnect/web3-provider to => @walletconnect/ethereum-provider
+import { EthereumProvider } from "@walletconnect/ethereum-provider"
+import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
+import { connect } from '@wagmi/core'
+
 import { StyleSheet, FlatList, TouchableOpacity, Keyboard, TouchableWithoutFeedback } from "react-native";
 import { View, Text, TextInput, textColor } from "../../components/Themed";
 import React, { useEffect, useState, useCallback } from "react";
@@ -92,14 +96,22 @@ export default function BatchPay() {
     }
   }
 
-  const connector = useWalletConnect();
+  //const connector = useWalletConnect();
+  //switch to wagmiConnection to walletconnect
+  const connector = connect({
+    connector: WalletConnectConnector({
+      options: {
+        projectId: config.projectId,
+      }
+    }),
+  })
 
   // Function that calls the batchPay function on the Ethereum contract
   const batchPay = React.useCallback(
     async (rate, workers) => {
       try {
         var date = moment().utcOffset("-04:00").format("YYYY-MM-DD hh:mm:ss a");
-        const provider = new WalletConnectProvider({
+        const provider = new EthereumProvider({
           rpc: {
             5: config.providerUrl,
           },

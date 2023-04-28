@@ -2,7 +2,7 @@ import { StyleSheet, Button } from "react-native";
 import QRCode from "react-native-qrcode-svg";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Text, View, backgroundColor } from "../../components/Themed";
-import { useWalletConnect } from "@walletconnect/react-native-dapp"; //change from @walletconnect/react-native-dapp to => @walletconnect/ethereum-provider
+// import { useWalletConnect } from "@walletconnect/react-native-dapp"; //change from @walletconnect/react-native-dapp to => @walletconnect/ethereum-provider
 
 // Function to abbreviate address
 const shortenAddress = (address) => {

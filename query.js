@@ -30,6 +30,7 @@ export const GET_WORKER_CHECKINS = (id) =>
   }
 `;
 
+/*
 const App = () => (
   <ApolloProvider client={client}>
     <app />
@@ -37,3 +38,4 @@ const App = () => (
 );
 
 AppRegistry.registerComponent("MyApplication", () => App);
+*/

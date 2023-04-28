@@ -8,9 +8,7 @@ import {
   NavigationContainer
 } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import {
-  useWalletConnect
-} from "@walletconnect/react-native-dapp"; //change from @walletconnect/react-native-dapp to => @walletconnect/ethereum-provider
+import { EthereumProvider } from "@walletconnect/ethereum-provider"; //change from @walletconnect/react-native-dapp to => @walletconnect/ethereum-provider
 import * as React from "react";
 import {
   Pressable,

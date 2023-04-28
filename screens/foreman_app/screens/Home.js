@@ -5,7 +5,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import HighlightText from "@sanar/react-native-highlight-text";
 import { ethers } from "ethers";
 import * as config from "../../ChainBytesConfig";
-import { useWalletConnect } from "@walletconnect/react-native-dapp"; //change from @walletconnect/react-native-dapp to => @walletconnect/ethereum-provider
+// import { useWalletConnect } from "@walletconnect/react-native-dapp"; //change from @walletconnect/react-native-dapp to => @walletconnect/ethereum-provider
 import { checkedIn } from "./Batch_Check_in";
 import Spinner from "react-native-loading-spinner-overlay";
 

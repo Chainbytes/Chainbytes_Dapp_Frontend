@@ -7,8 +7,12 @@ import {
 } from "react-native";
 import React from "react";
 import { ethers } from "ethers";
-import WalletConnectProvider from "@walletconnect/web3-provider"; //change from @walletconnect/web3-provider to => @walletconnect/ethereum-provider
-import { useWalletConnect } from "@walletconnect/react-native-dapp"; //change from @walletconnect/react-native-dapp to => @walletconnect/ethereum-provider
+// import WalletConnectProvider from "@walletconnect/web3-provider"; //change from @walletconnect/web3-provider to => @walletconnect/ethereum-provider
+import { EthereumProvider } from "@walletconnect/ethereum-provider"
+import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
+import { connect } from '@wagmi/core'
+
+//import { useWalletConnect } from "@walletconnect/react-native-dapp"; //change from @walletconnect/react-native-dapp to => @walletconnect/ethereum-provider
 import ethereum_address from "ethereum-address";
 import * as config from "../ChainBytesConfig.js";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -31,8 +35,13 @@ export default function CreateForeman({ navigation }) {
     }
   }, [route.params?.data]);
 
-  const connector = useWalletConnect();
-
+  const connector = connect({
+    connector: WalletConnectConnector({
+      options: {
+        projectId: config.projectId,
+      }
+    }),
+  })
   // Function to create the foreman
   // NB: Handle result in a better way. Check for errors
 
@@ -41,7 +50,7 @@ export default function CreateForeman({ navigation }) {
   const createForeman = React.useCallback(
     async (_newForemanAddress) => {
       try {
-        const provider = new WalletConnectProvider({ 
+        const provider = new EthereumProvider({ 
           rpc: {
             5: config.providerUrl,
           },

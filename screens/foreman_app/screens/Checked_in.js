@@ -4,7 +4,7 @@ import WorkerItem from "./Extra/workerItem";
 import * as config from "../../ChainBytesConfig.js";
 import { ethers } from "ethers";
 import moment from "moment";
-import { useWalletConnect } from "@walletconnect/react-native-dapp";
+import { useWalletConnect } from "@walletconnect/react-native-dapp"; //change from @walletconnect/react-native-dapp to => @walletconnect/ethereum-provider
 import WalletConnectProvider from "@walletconnect/web3-provider"; //change from @walletconnect/web3-provider to => @walletconnect/ethereum-provider
 
 // For connecting to the contract

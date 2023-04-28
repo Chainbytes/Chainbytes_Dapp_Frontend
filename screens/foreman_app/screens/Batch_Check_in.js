@@ -8,8 +8,12 @@ import WorkerItem from "./Extra/workerItem";
 import * as config from "../../ChainBytesConfig.js";
 import { ethers } from "ethers";
 import moment from "moment";
-import { useWalletConnect } from "@walletconnect/react-native-dapp"; //change from @walletconnect/react-native-dapp to => @walletconnect/ethereum-provider
-import WalletConnectProvider from "@walletconnect/web3-provider"; //change from @walletconnect/web3-provider to => @walletconnect/ethereum-provider
+// import { useWalletConnect } from "@walletconnect/react-native-dapp"; //change from @walletconnect/react-native-dapp to => @walletconnect/ethereum-provider
+// import WalletConnectProvider from "@walletconnect/web3-provider"; //change from @walletconnect/web3-provider to => @walletconnect/ethereum-provider
+import { EthereumProvider } from "@walletconnect/ethereum-provider"
+import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
+import { connect } from '@wagmi/core'
+
 import Spinner from "react-native-loading-spinner-overlay";
 import {View, Text} from '../../../components/Themed'
 
@@ -48,7 +52,14 @@ let contract = new ethers.Contract(
 export default function Checked_in({ route }) {
   const [workers, setWorkers] = useState([]);
   const [loading, setLoading] = useState(false);
-  const connector = useWalletConnect();
+  // const connector = useWalletConnect();
+  const connector = connect({
+    connector: WalletConnectConnector({
+      options: {
+        projectId: config.projectId,
+      }
+    }),
+  })
   // Function to check in a worker
   // NB: Handle result in a better way. Check for errors
 
@@ -60,7 +71,7 @@ export default function Checked_in({ route }) {
         workers2.push(worker.text);
       }
       console.log(workers2)
-      const provider = new WalletConnectProvider({
+      const provider = new EthereumProvider({
         rpc: {
           5: config.providerUrl,
         },

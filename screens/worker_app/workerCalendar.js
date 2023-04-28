@@ -12,8 +12,9 @@ import {
 } from "../../components/Themed";
 import * as query from "../../query";
 import { useQuery } from "@apollo/client";
-import { useWalletConnect } from "@walletconnect/react-native-dapp"; //change from @walletconnect/react-native-dapp to => @walletconnect/ethereum-provider
-
+// import { useWalletConnect } from "@walletconnect/react-native-dapp"; //change from @walletconnect/react-native-dapp to => @walletconnect/ethereum-provider
+import { connect } from '@wagmi/core'
+import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
 
 // Contract declaration
 const provider = new ethers.providers.JsonRpcProvider(config.providerUrl);
@@ -38,7 +39,13 @@ function formatDates(checkIns, setCheckIns) {
 }
 
 export default function WorkCalendar(props) {
-  const connector = useWalletConnect();
+  const connector = connect({
+    connector: WalletConnectConnector({
+      options: {
+        projectId: config.projectId,
+      }
+    }),
+  });
   const [checkIns, setCheckIns] = useState({});
   let bg = backgroundColor();
   let tc = textColor();

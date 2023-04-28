@@ -21,13 +21,16 @@ import { Text, View } from "../components/Themed";
 import Spinner from "react-native-loading-spinner-overlay";
 import qrModal from "./farm_app/qrModal";
 
-import { useWalletConnect } from "@walletconnect/react-native-dapp"; //change from @walletconnect/react-native-dapp to => @walletconnect/ethereum-provider
+import { useAccount, useConnect, useDisconnect } from 'wagmi'
+import { InjectedConnector } from 'wagmi/connectors/injected'
+
+//import { useWalletConnect } from "@walletconnect/react-native-dapp"; //change from @walletconnect/react-native-dapp to => @walletconnect/ethereum-provider
 // import {
 //   useWalletConnect,
 //   withWalletConnect,
 // } from "@walletconnect/react-native-dapp";
 // import WalletConnectProvider from "@walletconnect/web3-provider";
-import * as WalletConnect from "@walletconnect/react-native-dapp";
+//import * as WalletConnect from "@walletconnect/react-native-dapp";
 
 // Stack object to navigate between different app pages
 const Stack = createNativeStackNavigator();
@@ -43,6 +46,7 @@ let contract = new ethers.Contract(
 );
 
 export default function App({ navigation }) {
+  /*
   const connector = useWalletConnect();
   // async function getBalance() {
   //   await provider.getBalance(connector.accounts[0]).then((result) => {
@@ -53,6 +57,19 @@ export default function App({ navigation }) {
 
   const killSession = React.useCallback(() => {
     connector.killSession();
+    navigation.navigate("Root");
+  }, [connector]);
+  */
+
+  const { address, isConnected } = useAccount();
+  const connector = useConnect({
+    connector: new InjectedConnector(),
+  })
+  const { disconnect } = useDisconnect()
+  const tc = textColor();
+
+  const killSession = React.useCallback(() => {
+    connector.disconnect();
     navigation.navigate("Root");
   }, [connector]);
 
