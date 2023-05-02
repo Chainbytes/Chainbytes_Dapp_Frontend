@@ -14,7 +14,7 @@ import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 
 //gets the URI of the subgraph for the workers
 const client = new ApolloClient({
-  uri: "https://api.thegraph.com/subgraphs/name/jossduff/coffee-subgraph",
+  uri: "https://api.studio.thegraph.com/query/44596/coffee-subgraph/v0.0.1",
   cache: new InMemoryCache(),
 });
 //this in theory will query the graph for the numebr of unpaid workers 
@@ -31,9 +31,6 @@ const getNumUnpaid = async () => {
   const { data } = await client.query({ query });
   return data.workers.length;
 };
-
-
-
 
 
 const provider = new ethers.providers.JsonRpcProvider(config.providerUrl);
