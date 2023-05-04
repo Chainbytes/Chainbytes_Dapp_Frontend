@@ -21,6 +21,8 @@ export const GET_WORKER_CHECKINS = (id) =>
   gql`
   query {
   worker(id: "${id}") {
+    daysWorked
+    daysUnpaid
     	checkIns{
         year
         month
