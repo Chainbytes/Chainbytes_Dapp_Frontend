@@ -23,42 +23,65 @@ let contract = new ethers.Contract(
   provider
 );
 
-// Function to format checkIns into marked dates format
-function formatDates(checkIns, setCheckIns) {
-  for (const date of checkIns) {
-    setCheckIns((prevCheckIns) => {
-      const formattedDate = date.year + "-" + date.month + "-" + date.day;
-      return {
-        [formattedDate]: { selectedColor: "#8F8F8F", selected: true },
-        prevCheckIns,
-      };
-    });
-    // console.log(date.year + "-" + date.month + "-" + date.day);
-  }
-}
 
 export default function WorkCalendar(props) {
   const connector = useWalletConnect();
   const [checkIns, setCheckIns] = useState({});
   let bg = backgroundColor();
   let tc = textColor();
+  const marked ={};
 
   const handleRefresh = () => {
     // manually refetch data
     refetch();
   };
 
+  const formatDates=(checkIns) =>{
+      
+      checkIns.forEach((date)=>{
+        let year = date.year;
+        let month;
+        let day;
+        if (date.month <10){
+          month = date.month.toString().padStart(2,'0');
+        }
+        else{
+          month = date.month.toString;
+        }
+        if (date.day <10){
+          day = date.day.toString().padStart(2,'0');
+        }
+        else{
+          day = date.day.toString();
+        }
+        const formattedDate = year + "-" + month + "-" + day;
+        console.log(formattedDate)
+        marked[formattedDate]= {
+          selected:true,
+          selectedColor: 'blue',
+        };
+      });
+    
+  }
   const { loading, error, data, refetch } = useQuery(
     query.GET_WORKER_CHECKINS(connector.accounts[0]),
     {
       onCompleted: () => {
+        // console.log(data.worker.daysWorked);
         if (data.worker != null) {
-          formatDates(data.worker.checkIns, setCheckIns);
+          formatDates(data.worker.checkIns);
         }
       },
       notifyOnNetworkStatusChange: true,
-    }
+    },
   );
+  const daysWorked = data?.worker?.daysWorked || 0;
+  const daysUnpaid = data?.worker?.daysUnpaid || 0;
+  console.log(daysWorked);
+  console.log(daysUnpaid);
+
+  
+
 
   return (
     <>
@@ -73,6 +96,15 @@ export default function WorkCalendar(props) {
       )}
       {error && <Text>Error: {error.message}</Text>}
       <SafeAreaView style={[styles.screen, { backgroundColor: bg }]}>
+        <View style={styles.top}>
+          <Text style={styles.daysText}>
+            Days Worked: {daysWorked}
+          </Text>
+          <Text style={styles.daysText}>
+            Days Unpaid: {daysUnpaid}
+          </Text>
+        </View>
+        
         <Calendar
           minDate={"2022-05-01"}
           hideExtraDays={true}
@@ -83,9 +115,9 @@ export default function WorkCalendar(props) {
           //   console.log("selected day", day);
           // }}
           enableSwipeMonths={true}
-          markedDates={checkIns}
+          markedDates={marked}
           style={{
-            height: "100%",
+            height: "70%",
             justifyContent: "center",
             backgroundColor: bg,
           }}
@@ -93,7 +125,7 @@ export default function WorkCalendar(props) {
             calendarBackground: bg,
             textSectionTitleColor: tc,
             todayTextColor: tc,
-            dayTextColor: "gray",
+            dayTextColor: "white",
             monthTextColor: tc,
             arrowColor: tc,
             textDayFontFamily: "HelveticaNeue-Bold",
@@ -111,6 +143,7 @@ export default function WorkCalendar(props) {
           >
             <Text style={styles.buttonTextStyle}> Refresh Calendar </Text>
           </TouchableOpacity>
+          
         </View>
       </SafeAreaView>
     </>
@@ -147,5 +180,19 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     fontSize: 16,
     fontWeight: "600",
+  },
+  daysText: {
+    color: "#FFFFFF",
+    fontWeight: "bold",
+    fontSize: 18,
+    marginTop: 5,
+    textAlign: "center",
+  },
+  top: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingHorizontal: 20,
+    paddingVertical: 20,
+    marginTop: 50,
   },
 });
