@@ -17,29 +17,42 @@ This application is broken up into 3 different roles with different functions:
 <br>
 
 ## Running the Application
-Prerequisites:
+<b>Developer</b> Prerequisites:
 * Git Source Control
     * Download and follow instructions [here](https://git-scm.com/downloads).
 * Node.js (includes npm, nvm, and npx cmd-line tools)
     * Download and follow instructions [here](https://nodejs.org/en/download/).
+* Yarn
+    * This is our preferred dependency manager. Download and follow instructions [here](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable).
+* Watchman
+    * For macOS & Linux users, you can download for testing/diagnostic procedures [Watchman](https://facebook.github.io/watchman/docs/install#buildinstall).  
 * Expo-CLI
-    * To use Expo, you need to have the previous tools ^ installed on the machine you are developing on.
-    * For macOS & Linux users, you will need to download [Watchman](https://facebook.github.io/watchman/docs/install#buildinstall).
+    * To use Expo, you need to have `Node.js` installed on the machine you are running the application on.
     * Expo-CLI is part of the `expo` package, you can leverage it using `npx` - a Node.js package runner. Meaning, no installation is required!
-* Expo application downloaded on mobile phone from app store.
+
+<b>User</b> Prerequisites:
+* Wallet
+    * Users will have to have a an account registered with any of the wallet service providers supported by WalletConnect which can be found [here](https://explorer.walletconnect.com/?type=wallet). Our preferred provider has been `Metamask`. Users are expected to have registered an account with one of the providers.
+* Expo application downloaded on mobile phone from android/iOS app store.
     * Title: "Expo Go"
     * Developer: "Nametag"
 
 Command-Line Instructions  
-* Run `npm install` in order to download all of the correct dependencies onto your machine.
-* You can run this application locally by typing in the terminal: `expo start`.  
-    * This will generate a scannable QR code, which will run the application onto your device.
+* Once in the terminal command-line interface:
+    * Enter `yarn install` in order to download all of the correct dependencies onto your machine.
+    * You can then run this application locally by typing in the terminal: `npx expo start`.  
+        * This will generate a scannable QR code, which will run the application onto your device.
 
 <br>
 
 ## Deploying the Application
+
+<b>
+** Note: Build has not yet completed! We are waiting for full WalletConnect 2.0 migration with react-native-dapps! **  
+</b> 
+
 Prerequisites:
-* Need Expo developer account (You can sign up on their website)
+* Need Expo developer account (You can sign up on their website [here](https://expo.dev/))
 * Expo-CLI installed (Reference "Running the Application" Section)
 
 These have been set, but can be changed
@@ -57,4 +70,4 @@ These have been set, but can be changed
 <i>NOTE</i>: To learn how to publish channels using Expo, you can do so [here](https://docs.expo.dev/archive/classic-updates/publishing/). More advanced deployment instructions can also be found at this [link](https://docs.expo.dev/archive/classic-updates/advanced-release-channels/).
 
 ## Additional Notes:
-There are lots of dependencies that will probably be out of date as this project gets passed on. Be very careful when trying to update a certain package or when forcing updates/audits in npm, as this can mess up other dependencies and leave you incredibly confused. One major dependency update will probably take form in the Expo version. Our current version is 45.0.0, but will most likely be deprecated as time goes on.
+There are lots of dependencies that will probably be out of date as this project gets passed on. Be very careful when updating a certain packages or when forcing updates/audits in npm/yarn, as this can mess up other dependencies and leave you incredibly confused. Two major dependency updates will  take form in the Expo and WalletConnect versions. Our current version is 46.0.0 and 1.0, respectively, but will be deprecated as time progresses.
