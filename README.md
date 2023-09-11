@@ -5,6 +5,7 @@ This mobile application is made to utilize blockchain technology in order to hav
 
 ## Roles
 This application is broken up into 3 different roles with different functions:
+
 - Farmer role: Farmers can only be determined by whoever owns the contract. This role is stored into the contract, and allows access to the farm_app, and its functions. Farmer functions: createForeman, batchPay.
     * createForeman: allows the farmer to send an address to the contract, whose role will change to a foreman.
     * batchPay: allows the farmer to send an array of addresses and their respective balances to be paid, so that they can be transferred ETH.
