@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
 import { Text, textColor, View } from "../../../../components/Themed";
-import { isAddress } from "ethers/lib/utils";
+import { isAddress } from "ethers";
 
 export default function WorkerItem({ item, pressHandler }) {
   return (
