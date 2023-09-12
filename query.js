@@ -1,6 +1,4 @@
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
-import React from "react";
-import { AppRegistry } from "react-native";
 
 // Initialize Apollo Client
 export const client = new ApolloClient({
@@ -17,25 +15,16 @@ export const GET_CHECKINS = gql`
   }
 `;
 
-export const GET_WORKER_CHECKINS = (id) =>
-  gql`
-  query {
-  worker(id: "${id}") {
-    daysWorked
-    daysUnpaid
-    	checkIns{
-        year
-        month
-        day
+export const GET_WORKER_CHECKINS = (id) => gql`
+    query {
+      worker(id: "${id}") {
+        daysWorked
+        daysUnpaid
+        checkIns {
+          year
+          month
+          day
+        }
       }
     }
-  }
-`;
-
-const App = () => (
-  <ApolloProvider client={client}>
-    <app />
-  </ApolloProvider>
-);
-
-AppRegistry.registerComponent("MyApplication", () => App);
+  `;
